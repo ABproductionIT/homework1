@@ -1,21 +1,18 @@
 from numba import njit
-
-# for start install numba >> pip install numba
-P = int(input("Input the number>>"))
-if P < 0:
-    P -= 2*P
-    print("Your number  -", P, "is`")
-elif P == 0:
-     print("Your number is zero, cant  do NOT PRIME  /")
-else:
+#  coment @njit for dont use GPU
+@njit
+def fast():
     print("Your number", P, "is`")
-    @njit
-    def tivi():
-        for i in range(2, P):
-            x = P % i
-            if x == 0:
-                print("NOT")
-                break
+    for i in range(2, P):
+        x = P % i
+        if x == 0:
+            print("NOT")
+            break
+P = int(input("Input the number>>"))
+fast()
 print("PRIME")
+
 # 2147483647 prime for test 2 min*
+# using numba>> 2147483647 prime for test 4-10s !!!!!!
 # 2147483648 not prime for test 0000001 ms*
+# using numba>> number 545554545457 is` not PRIME 0000001 ms
